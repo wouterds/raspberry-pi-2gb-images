@@ -45,6 +45,7 @@ echo "" >> /etc/sudoers
 echo "pi ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Disable ssh login for root
+echo "" >> /etc/ssh/sshd_config
 echo "PermitRootLogin no" >> /etc/ssh/sshd_config
 
 # Install zsh
@@ -62,6 +63,7 @@ echo "export LANG=\"en_US.UTF-8\"" >> ~/.zshrc
 
 # Network discovery
 apt-get install avahi-daemon -y
+insserv avahi-daemon
 
 # Install Wifi drivers & tools
 apt-get install wpasupplicant wireless-tools -y
@@ -97,7 +99,7 @@ cd /tmp
 wget http://node-arm.herokuapp.com/node_latest_armhf.deb
 dpkg -i node_latest_armhf.deb
 
-# Update & upgrade to be sure
+# Update & upgrade, just to be sure
 apt-get update
 apt-get upgrade -y
 
